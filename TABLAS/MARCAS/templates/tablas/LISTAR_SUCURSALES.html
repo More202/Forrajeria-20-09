@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+
+{% block titulo %} LISTA DE SUCURSALES {% endblock %}
+
+{% block contenido %} 
+
+<div class="card">
+    <div class="card-header">
+        <a name="" id="" class="btn btn-success" href="{% url 'crear_sucursal' %}" role="button">AGREGAR SUCURSAL</a>
+    </div>
+    
+    <div class="card-body">
+        <h4 class="card-title">SUCURSALES</h4>
+        <div class="table-responsive">
+            <table
+                class="table table-primary">
+                <thead class="centered-header">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">SUCURSALES</th>
+                        <th scope="col">TELEFONO</th>
+                        <th scope="col">ACCIONES</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {% for sucursal in sucursales %}
+
+                    <tr class="">
+                        <td>{{ sucursal.id }}</td>
+                        <td>{{ sucursal.direccion }}</td>
+                        <td>{{ sucursal.telefono }}</td>
+                        <td><a name="" id="" class="btn btn-info" href="{% url 'editar_sucursal' sucursal.id %}" role="button">Editar</a>
+                        | <a name="" id="" class="btn btn-danger" href="{% url 'eliminar_sucursal' sucursal.id %}" role="button">Borrar</a></td>
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+
+        
+        
+    </div>
+    
+</div>
+
+
+{% endblock %}

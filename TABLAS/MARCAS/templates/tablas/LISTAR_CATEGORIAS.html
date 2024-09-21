@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+
+{% block titulo %} LISTA DE CATEGORIAS {% endblock %}
+
+{% block contenido %} 
+
+<div class="card">
+    <div class="card-header">
+        <a name="" id="" class="btn btn-success" href="{% url 'crear_categoria' %}" role="button">AGREGAR CATEGORIA</a>
+    </div>
+    
+    <div class="card-body">
+        <h4 class="card-title">CATEGORIAS</h4>
+        <div class="table-responsive">
+            <table
+                class="table table-primary">
+                <thead class="centered-header">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">CATEGORIA</th>
+                        <th scope="col">ACCIONES</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {% for categor in categorias %}
+
+                    <tr class="">
+                        <td>{{ categor.id }}</td>
+                        <td>{{ categor.categoria }}</td>
+                        <td><a name="" id="" class="btn btn-info" href="{% url 'editar_categoria' categor.id %}" role="button">Editar</a>
+                        | <a name="" id="" class="btn btn-danger" href="{% url 'eliminar_categoria' categor.id %}" role="button">Borrar</a></td>
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+
+        
+        
+    </div>
+    
+</div>
+
+
+{% endblock %}

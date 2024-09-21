@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block titulo %}Nueva Venta{% endblock %}
+
+{% block contenido %}
+<div class="contenitore-prodotto">
+    <div class="header">
+        <div class="user-info">
+            <div class="user-icon"></div>
+            <div>
+                <h2>Hola, {{ request.user.username }}</h2>
+                <p>Sucursal: {{ sucursal_actual }}</p>
+            </div>
+        </div>
+        <div class="action-buttons">
+            <a href="{% url 'listado_ventas' %}" class="bottone-aggiungi" role="button">LISTA DE VENTAS</a>
+            <a href="{% url 'productos' %}" class="bottone-aggiungi" role="button">STOCK</a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="sales-list">
+            <table class="tabella-prodotto">
+                <thead>
+                    <tr>
+                        <th>NOMBRE</th>
+                        <th>CANTIDAD</th>
+                        <th>PRECIO</th>
+                        <th>TOTAL</th>
+                    </tr>
+                </thead>
+                <tbody id="productos-venta">
+                    <!-- Los productos se agregarán aquí dinámicamente -->
+                </tbody>
+            </table>
+            <div class="totales">
+                <p>Subtotal: $<span id="subtotal-amount">0.00</span></p>
+                <p>
+                    Descuento total: 
+                    <select id="descuento-total" onchange="actualizarTotal()">
+                        <option value="0">0%</option>
+                        <option value="5">5%</option>
+                        <option value="10">10%</option>
+                        <option value="15">15%</option>
+                        <option value="20">20%</option>
+                        <option value="25">25%</option>
+                        <option value="30">30%</option>
+                    </select>
+                </p>
+                <p>Descuento aplicado: $<span id="descuento-amount">0.00</span></p>
+                <h3>TOTAL FINAL: $<span id="total-amount">0.00</span></h3>
+            </div>
+            <div class="action-buttons">
+                <button type="button" onclick="cancelarVenta()">X</button>
+                <button type="button" onclick="imprimirVenta()">🖨️</button>
+                <button type="button" onclick="guardarVenta()">💾</button>
+                <button type="submit">✅</button>
+            </div>
+        </div>
+
+        <div class="category-buttons">
+            <div class="animal-buttons">
+                <button class="btn-category" onclick="mostrarCategorias('Perro')">PERRO</button>
+                <button class="btn-category" onclick="mostrarCategorias('Gato')">GATO</button>
+                <button class="btn-category" onclick="mostrarCategorias('Vaca')">VACA</button>
+                <button class="btn-category" onclick="mostrarCategorias('Caballo')">CABALLO</button>
+                <button class="btn-category" onclick="mostrarCategorias('Conejo')">CONEJO</button>
+                <button class="btn-category" onclick="mostrarCategorias('Ave')">AVE</button>
+            </div>
+            <div id="categorias-productos" class="category-group" style="display: none;">
+                <!-- Las categorías se mostrarán aquí dinámicamente -->
+            </div>
+        </div>
+    </div>
+
+    <div class="search-bar">
+        <input type="text" id="buscar-producto" placeholder="Buscar producto...">
+        <div id="sugerencias-productos" class="sugerencias"></div>
+    </div>
+
+    <div id="productos-mostrar" style="display: none;">
+        <h3>Productos disponibles:</h3>
+        <ul id="lista-productos"></ul>
+    </div>
+
+    <form id="venta-form" method="post" action="{% url 'nueva_venta' %}">
+        {% csrf_token %}
+        <input type="hidden" name="cliente" value="1">
+        <input type="hidden" name="caja" value="1">
+        <div id="productos-seleccionados">
+            <!-- Los productos seleccionados se agregarán aquí dinámicamente -->
+        </div>
+    </form>
+</div>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        lucide.createIcons();
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+
+{% block titulo %} CAJA {% endblock %}
+
+{% block contenido %}
+
+<div class="card">
+  <div class="card-header">
+    <a name="" id="" class="btn btn-success" href="{% url 'crear_caja' %}" role="button">AGREGAR CAJA</a>
+  </div>
+
+  <div class="card-body">
+    <h4 class="card-title">CAJA</h4>
+    <div class="table-responsive">
+      <table class="table table-primary">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">EMPLEADO</th>
+            <th scope="col">SUCURSAL</th>
+            <th scope="col">ABIERTA</th>
+            <th scope="col">FECHA Y HORA DE APERTURA</th>
+            <th scope="col">FECHA Y HORA DE CIERRE</th>
+            <th scope="col">MONTO INICIAL</th>
+            <th scope="col">TOTAL INGRESOS</th>
+            <th scope="col">STOCK EGRESOS</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          {% for caja in cajas %}
+
+          <tr class="">
+            <td>{{ caja.id }}</td>
+            <td>{{ caja.empleado }}</td>
+            <td>{{ caja.sucursal }}</td>
+            <td>{{ caja.abierta }}</td>
+            <td>{{ caja.fecha_hs_ap }}</td>
+            <td>{{ caja.fecha_hs_cier }}</td>
+            <td>{{ caja.monto_ini }}</td>
+            <td>{{ caja.total_ing }}</td>
+            <td>{{ producto.total_egr }}</td>
+
+            <td><a name="" id="" class="btn btn-info" href="{% url 'editar_caja' caja.id %}" role="button">Editar</a> | <a name="" id="" class="btn btn-danger" href="{% url 'eliminar_caja' caja.id %}"
+                role="button">Borrar</a></td>
+          </tr>
+
+          {% endfor %}
+
+        </tbody>
+      </table>
+    </div>
+
+
+
+  </div>
+
+</div>
+
+
+{% endblock %}

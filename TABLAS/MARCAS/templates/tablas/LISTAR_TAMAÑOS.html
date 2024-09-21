@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+
+{% block titulo %} LISTA DE TAMAÑOS {% endblock %}
+
+{% block contenido %} 
+
+<div class="card">
+    <div class="card-header">
+        <a name="" id="" class="btn btn-success" href="{% url 'crear_tamaño' %}" role="button">AGREGAR TAMAÑO</a>
+    </div>
+    
+    <div class="card-body">
+        <h4 class="card-title">TAMAÑO</h4>
+        <div class="table-responsive">
+            <table
+                class="table table-primary">
+                <thead class="centered-header">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">TAMAÑO</th>
+                        <th scope="col">ACCIONES</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {% for tamañito in tamaños %}
+
+                    <tr class="">
+                        <td>{{ tamañito.id }}</td>
+                        <td>{{ tamañito.tamaño }}</td>
+                        <td><a name="" id="" class="btn btn-info" href="{% url 'editar_tamaño' tamañito.id %}" role="button">Editar</a>
+                        | <a name="" id="" class="btn btn-danger" href="{% url 'eliminar_tamaño' tamañito.id %}" role="button">Borrar</a></td>
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+
+        
+        
+    </div>
+    
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+
+{% block titulo %} LISTA DE EDADES {% endblock %}
+
+{% block contenido %} 
+
+<div class="card">
+    <div class="card-header">
+        <a name="" id="" class="btn btn-success" href="{% url 'crear_edad' %}" role="button">AGREGAR EDAD</a>
+    </div>
+    
+    <div class="card-body">
+        <h4 class="card-title">EDADES</h4>
+        <div class="table-responsive">
+            <table
+                class="table table-primary">
+                <thead class="centered-header">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">EDAD</th>
+                        <th scope="col">ACCIONES</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {% for edad in edades %}
+
+                    <tr class="centered-row">
+                        <td>{{ edad.id }}</td>
+                        <td>{{ edad.edad }}</td>
+                        <td><a name="" id="" class="btn btn-info" href="{% url 'editar_edad' edad.id %}" role="button">Editar</a>
+                        | <a name="" id="" class="btn btn-danger" href="{% url 'eliminar_edad' edad.id %}" role="button">Borrar</a></td>
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+
+        
+        
+    </div>
+    
+</div>
+
+
+{% endblock %}

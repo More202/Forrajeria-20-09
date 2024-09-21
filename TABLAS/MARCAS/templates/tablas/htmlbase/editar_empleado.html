@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+
+{% block titulo %} EDITAR UN EMPLEADO {% endblock %}
+
+{% block contenido %} 
+
+<div class="card">
+    <div class="card-header">
+        Editar un empleado
+    </div>
+    <div class="card-body">
+        <h4 class="card-title">Datos de la edad</h4>
+        {% include 'tablas/form.html' %}
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block titulo %}LISTA DE detalleS{% endblock %}
+
+{% block contenido %}
+<div class="card">
+    <div class="card-header">
+        <a name="" id="" class="btn btn-success" href="{% url 'crear_detalle' %}" role="button">AGREGAR detalle</a>
+    </div>
+    
+    <div class="card-body">
+        <h4 class="card-title">detalles</h4>
+        <div class="table-responsive">
+            <table class="table table-primary">
+                <thead class="centered-header">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">VENTA</th>
+                        <th scope="col">PRODUCTO</th>
+                        <th scope="col">CANTIDAD</th>
+                        <th scope="col">SUBTOTAL</th>
+                        <th scope="col">PRECIO UNITARIO</th>
+                        <th scope="col">DESCUENTO</th>
+                        <th scope="col">ACCIONES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for detalle in detalles %}
+                    <tr class="">
+                        <td>{{ detalle.id }}</td>
+                        <td>{{ detalle.venta }}</td>
+                        <td>{{ detalle.producto }}</td>
+                        <td>{{ detalle.cantidad}}</td>
+                        <td>{{ detalle.suntototal }}</td>
+                        <td>{{ detalle.precio_unitario }}</td>
+                        <td>{{ detalle.descuento }}</td>
+                        <td>
+                            <a name="" id="" class="btn btn-info" href="{% url 'editar_detalle' detalle.id %}" role="button">Editar</a>
+                            | 
+                            <a name="" id="" class="btn btn-danger" href="{% url 'eliminar_detalle' detalle.id %}" role="button">Borrar</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
