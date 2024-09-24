@@ -79,9 +79,9 @@ WSGI_APPLICATION = 'sistema.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'forrajerias',
+        'NAME': 'herradura',
         'USER': 'root',
-        'PASSWORD': 'ccc',
+        'PASSWORD': '417714266+Ma',
         'HOST': 'localhost',
         'PORT': '3306'
     }
